@@ -1,19 +1,17 @@
-import {Link} from "react-router-dom";
-import connectToMetaMask from "../utils/connection.js";
-import {useState} from "react";
-import ConnectButton from "./ConnectButton.jsx";
+//import {Link} from "react-router-dom";
+//import {useState} from "react";
 const Navbar = () => {
-	const [walletConnected, setWalletConnected] = useState(false);
-
-	const handleConnectWallet = async () => {
-		try {
-			const connectedAccount = await connectToMetaMask();
-			console.log('Connected account:', connectedAccount);
-			setWalletConnected(true);
-		} catch (error) {
-			console.error('Error connecting to MetaMask:', error.message);
-		}
-	};
+//	const [walletConnected, setWalletConnected] = useState(false);
+//
+//	const handleConnectWallet = async () => {
+//		try {
+//			const connectedAccount = await connectToMetaMask();
+//			console.log('Connected account:', connectedAccount);
+//			setWalletConnected(true);
+//		} catch (error) {
+//			console.error('Error connecting to MetaMask:', error.message);
+//		}
+//	};
 
 
 	return (
@@ -28,8 +26,6 @@ const Navbar = () => {
 					<li className="px-4">Technology</li>
 					<li className="px-4">Resources</li>
 					<li className="px-4">Get started</li>
-					<li> <ConnectButton /> </li>
-
 				</ul>
 			</div>
 		</nav>

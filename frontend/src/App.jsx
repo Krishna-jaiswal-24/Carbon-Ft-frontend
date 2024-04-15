@@ -1,5 +1,6 @@
 import './App.css'
 import Home from "./pages/Home.jsx";
+import Started from "./pages/Started.jsx";
 
 function App() {
 	return (
