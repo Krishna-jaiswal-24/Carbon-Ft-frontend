@@ -1,20 +1,24 @@
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar.jsx";
-import {Link} from "react-router-dom";
+import { TransactionContext } from "../context/TransactionContext.jsx";
 
 const Home = () => {
+	const { connectWallet, currentAccount } = useContext(TransactionContext);
+	console.log(currentAccount)
 	return (
 		<div>
-			<Navbar/>
+			<Navbar />
 
 			{/*hero section*/}
 			<section>
 				<div className="flex flex-col justify-center items-center font-albert mt-16">
 					<h1 className="text-[14rem]  font-albert text-center text-[#d0fc65] tracking-tight ">Satoshi's &
 
-						<Link to="/get-started"><button
-							className="mx-4 border-2 rounded-3xl py-2 text-xl px-10 tracking-normal text-white relative ml-16 bottom-4 hover:bg-[#FAF9F6] hover:border-[#798068] hover:text-[#798068]">
-								Connect Wallet
-						</button>
+						<Link to="/">{!currentAccount && <button
+							className="mx-4 border-2 rounded-3xl py-2 text-xl px-10 tracking-normal text-white relative ml-16 bottom-4 hover:bg-[#FAF9F6] hover:border-[#798068] hover:text-[#798068]" onClick={connectWallet}>
+							Connect Wallet
+						</button>}
 						</Link>
 
 					</h1>

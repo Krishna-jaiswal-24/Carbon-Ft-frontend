@@ -1,18 +1,6 @@
 //import {Link} from "react-router-dom";
 //import {useState} from "react";
 const Navbar = () => {
-//	const [walletConnected, setWalletConnected] = useState(false);
-//
-//	const handleConnectWallet = async () => {
-//		try {
-//			const connectedAccount = await connectToMetaMask();
-//			console.log('Connected account:', connectedAccount);
-//			setWalletConnected(true);
-//		} catch (error) {
-//			console.error('Error connecting to MetaMask:', error.message);
-//		}
-//	};
-
 
 	return (
 		<nav className="flex justify-between p-10 text-white  font-albert cursor-pointer items-center z-10">
