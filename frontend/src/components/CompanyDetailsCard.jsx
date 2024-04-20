@@ -31,7 +31,7 @@ const CompanyDetailsCard = () => {
 			)
 		}
 		fetchCompany();
-	}, [])
+	}, [currentAccount])
 
 	return (
 		<div className="bg-primary w-4/12  font-albert flex flex-col justify-start p-8 rounded-lg h-4/5">
