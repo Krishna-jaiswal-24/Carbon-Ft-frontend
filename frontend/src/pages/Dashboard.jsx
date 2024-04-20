@@ -1,26 +1,40 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar.jsx";
 import CompanyDetailsCard from "../components/CompanyDetailsCard.jsx";
 import FootprintCard from "../components/FootprintCard.jsx";
 import ChartCard from "../components/ChartCard.jsx";
+import { TransactionContext } from "../context/TransactionContext.jsx";
 
 const Dashboard = () => {
+	const { currentAccount } = useContext(TransactionContext);
+	const navigate = useNavigate();
+
+	// Redirect if not logged in
+	useEffect(() => {
+		if (!currentAccount) {
+			navigate('/');
+		}
+	}, [currentAccount, navigate]);
+
 	return (
-		<div className="bg-[#2e3918] w-screen h-screen">
+		<div className="bg-[#2e3918] w-full h-full">
 			<Navbar />
-			<div className="h-1/2 flex justify-between mx-10">
-				<CompanyDetailsCard />
-				<ChartCard />
-			</div>
-			<div>
-				<h1 className="font-albert text-6xl text-secondary ml-10 mb-10">Footprint History</h1>
-				<div className="flex mx-10 justify-between flex-wrap">
-					<FootprintCard  timeStamp="20-04-2024" totalEmission="100000 CO2e"/>
-					<FootprintCard  timeStamp="20-04-2024" totalEmission="100000 CO2e"/>
-					<FootprintCard  timeStamp="20-04-2024" totalEmission="100000 CO2e"/>
-					<FootprintCard  timeStamp="20-04-2024" totalEmission="100000 CO2e"/>
+			<main className="flex flex-col justify-between h-full p-10">
+				<div className="flex justify-between items-start mb-10">
+					<CompanyDetailsCard />
+					<ChartCard />
 				</div>
-			</div>
+				<section>
+					<h1 className="text-6xl text-secondary font-albert mb-10">Footprint History</h1>
+					<div className="flex justify-between flex-wrap">
+						<FootprintCard timeStamp="20-04-2024" totalEmission="100000 CO2e" />
+						<FootprintCard timeStamp="20-04-2024" totalEmission="100000 CO2e" />
+						<FootprintCard timeStamp="20-04-2024" totalEmission="100000 CO2e" />
+						<FootprintCard timeStamp="20-04-2024" totalEmission="100000 CO2e" />
+					</div>
+				</section>
+			</main>
 		</div>
 	);
 };
