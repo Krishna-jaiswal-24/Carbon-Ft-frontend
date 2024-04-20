@@ -2,14 +2,15 @@ import { ethers } from "ethers";
 import React, { useEffect, useState } from "react";
 
 import { contractABI, contractAddress } from "../utils/constants";
-import {useNavigate} from "react-router-dom";
 
 export const TransactionContext = React.createContext();
 
 const { ethereum } = window;
 
+const provider = new ethers.JsonRpcApiProvider(`https://eth-sepolia.g.alchemy.com/v2/C_x2f95uRPElXsgh6urjuRD1MVoCPrgU`)
+console.log(provider)
 const createEthereumContract = () => {
-  const provider = new ethers.BrowserProvider(ethereum)
+
   console.log({ "ether": ethereum })
   const signer = provider.getSigner();
   console.log("Signer" + signer)
@@ -48,18 +49,21 @@ export const TransactionsProvider = ({ children }) => {
   const registerEmission = async (totalEmission) => {
     try {
       if (ethereum) {
-        const carbonFootprintContract = createEthereumContract(); // Parse to BigNumber
+        const carbonFootprintContract = createEthereumContract();
 
+        // Get the connected wallet address
+        const connectedAddress = currentAccount;
 
-        // Require a valid emission value (can be adapted based on your logic)
-        const parsedEmission = ethers.parseEther(totalEmission.toString());
+        // No parsing to BigNumber needed (function expects address)
 
-        const tx = await carbonFootprintContract.registerCompany(parsedEmission);
-        console.log("Registering footprint...", tx.hash);
-        // Wait for transaction confirmation if needed (optional)
+        const tx = await carbonFootprintContract.registerCompany(connectedAddress);
+        console.log("Registering company...", tx.hash);
+
         // Wait for transaction confirmation (optional)
         const receipt = await tx.wait();
         console.log("Transaction confirmed:", receipt.transactionHash);
+
+        // Update UI or perform actions after confirmation (optional)
       }
     } catch (error) {
       console.error("Error registering company:", error);
@@ -111,6 +115,7 @@ export const TransactionsProvider = ({ children }) => {
         connectWallet,
         currentAccount,
         registerEmission,
+        getCompanyData,
         handleChange,
         formData,
       }}
