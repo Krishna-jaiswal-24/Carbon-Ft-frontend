@@ -12,6 +12,7 @@ export default {
 			},
 			colors:{
 				'secondary':'#d0fc65',
+				'primary':'#798068',
 			},
 			screens: {
 				'tablet': '640px',

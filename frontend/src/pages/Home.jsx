@@ -1,11 +1,16 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useContext} from "react";
+import { Link ,useNavigate} from "react-router-dom";
 import Navbar from "../components/Navbar.jsx";
 import { TransactionContext } from "../context/TransactionContext.jsx";
 
 const Home = () => {
+	const navigate = useNavigate();
+
 	const { connectWallet, currentAccount } = useContext(TransactionContext);
 	console.log(currentAccount)
+	// if(currentAccount){
+	// 	navigate('/get-started');
+	// }
 	return (
 		<div>
 			<Navbar />
