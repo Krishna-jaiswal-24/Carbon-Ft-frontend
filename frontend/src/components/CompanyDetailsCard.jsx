@@ -1,42 +1,46 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {Link} from "react-router-dom";
-import {TransactionContext} from "../context/TransactionContext.jsx";
+import React, { useContext, useEffect, useState } from 'react';
+import { TransactionContext } from "../context/TransactionContext.jsx";
 import axios from "axios";
 
 const CompanyDetailsCard = () => {
+	const [companyDetails, setCompanyDetails] = useState({
+		name: "",
+		walletAddress: "",
+		industry: "",
+		website: ""
+	});
 
+	const { currentAccount } = useContext(TransactionContext);
 
-	const [companyDetails, setCompanyDetails] = useState(
-		{
-			name: "",
-			walletAddress: "",
-			industry: "",
-			website: ""
-		}
-	)
-	const {currentAccount} = useContext(TransactionContext);
 	useEffect(() => {
 		const fetchCompany = async () => {
-			console.log("Function working")
-			console.log('dass',currentAccount);
-			const details = await axios.get(`http://10.0.4.104:8000/apis/companies/details/${currentAccount}`)
-			console.log(details)
+			try {
+				const { data } = await axios.get(`http://10.0.4.104:8000/apis/companies/details/${currentAccount}`);
+				console.log(data);  // It's good to log data for debugging, can be removed in production
+				const { company, industry_sector } = data;
+				setCompanyDetails({
+					name: company.name,
+					walletAddress: company.wallet_address,
+					industry: industry_sector.name,
+					website: company.website
+				});
+			} catch (error) {
+				console.error("Failed to fetch company details:", error);
+			}
+		};
 
-			setCompanyDetails({
-					name: details.data.company.name,
-					walletAddress: details.data.company.wallet_address,
-					industry: details.data.industry_sector.name,
-					website: details.data.company.website
-				}
-			)
+		if (currentAccount) {
+			fetchCompany();
 		}
-		fetchCompany();
-	}, [currentAccount])
+	}, [currentAccount]);  // Make sure to include currentAccount in the dependency array
 
 	return (
-		<div className="bg-primary w-4/12  font-albert flex flex-col justify-start p-8 rounded-lg h-4/5">
+		<div className="bg-primary w-4/12 font-albert flex flex-col justify-start p-8 rounded-lg h-4/5">
 			<h1 className="text-secondary text-4xl">{companyDetails.name}</h1>
-			<Link to={companyDetails.website} target={"_blank"} className="">{companyDetails.website}</Link>
+			<a href={companyDetails.website.startsWith('http') ? companyDetails.website : `http://${companyDetails.website}`}
+			   target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:text-blue-700">
+				{companyDetails.website}
+			</a>
 			<p>{companyDetails.walletAddress}</p>
 			<p>{companyDetails.industry}</p>
 		</div>

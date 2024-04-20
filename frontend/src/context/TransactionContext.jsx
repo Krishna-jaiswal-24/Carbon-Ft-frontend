@@ -22,7 +22,7 @@ const createEthereumContract = () => {
 
 export const TransactionsProvider = ({ children }) => {
   const [formData, setformData] = useState({ totalEmission: "" });
-  const [currentAccount, setCurrentAccount] = useState("");
+  const [currentAccount, setCurrentAccount] = useState();
 
 
   const handleChange = (e, name) => {
@@ -83,6 +83,7 @@ export const TransactionsProvider = ({ children }) => {
 
         // getCompanyData(currentAccount);
       } else {
+        setCurrentAccount(null)
         console.log("No accounts found");
       }
     } catch (error) {
