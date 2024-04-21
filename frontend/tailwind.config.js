@@ -10,9 +10,10 @@ export default {
 			fontFamily: {
 				'albert': ['Albert Sans', 'sans-serif'],
 			},
-			colors:{
-				'secondary':'#d0fc65',
-				'primary':'#798068',
+			colors: {
+				'secondary': '#d0fc65',
+				'primary': '#798068',
+				'tertiary': "#2e3918"
 			},
 			screens: {
 				'tablet': '640px',

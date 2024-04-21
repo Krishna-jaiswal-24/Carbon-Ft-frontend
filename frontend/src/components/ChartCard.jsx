@@ -39,7 +39,7 @@ const ChartCard = () => {
 
 
 	return (
-		<div className="h-auto w-3/5 p-8 rounded-lg bg-primary">
+		<div className="h-[31rem] w-3/5 p-8 rounded-lg bg-primary ml-6">
 			<h1 className="text-secondary font-albert text-5xl">Graph</h1>
 			<div className="h-[90%]"> <Line options={options} data={data} /></div>
 

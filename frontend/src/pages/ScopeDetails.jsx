@@ -1,6 +1,6 @@
-import React, { useState, useCallback, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const ScopeDetails = () => {
 	const [scope, setScope] = useState({ scope1: 0, scope2: 0, scope3: 0 });
@@ -83,7 +83,7 @@ const ScopeDetails = () => {
 				</div>
 			</div>
 		</div>
-	);
+	); ˀ
 };
 
 export default ScopeDetails;

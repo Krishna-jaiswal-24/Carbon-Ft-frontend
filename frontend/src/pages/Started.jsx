@@ -62,7 +62,7 @@ const Started = () => {
 			const response = await axios.post('http://10.0.4.104:8000/apis/footprint-reports/', {
 				company: companyDetails.id,
 				total_emission: parseFloat(emission),
-				transaction_hash: txHash
+				transaction_hash: txHash,
 			});
 			console.log('Emission posted successfully:', response.data);
 			// Passing response data to the /scopeDetails route

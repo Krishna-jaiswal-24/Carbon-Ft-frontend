@@ -17,7 +17,7 @@ const router = createBrowserRouter([
 		element: <App />,
 	},
 	{
-		path: "/get-started",
+		path: "/add-footprint",
 		element: <Started />
 	}, {
 		path: "/dashboard",
