@@ -1,42 +1,42 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {createBrowserRouter, RouterProvider,} from "react-router-dom";
+import { createBrowserRouter, RouterProvider, } from "react-router-dom";
 import App from './App.jsx';
 import './index.css';
-import Started from "./pages/Started.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
+import Started from "./pages/Started.jsx";
 
-import {TransactionsProvider} from './context/TransactionContext.jsx';
-import Register from "./pages/Register.jsx";
+import { TransactionsProvider } from './context/TransactionContext.jsx';
 import BreakDown from "./pages/BreakDown.jsx";
+import Register from "./pages/Register.jsx";
 import ScopeDetails from "./pages/ScopeDetails.jsx";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <App/>,
+		element: <App />,
 	},
 	{
 		path: "/get-started",
-		element: <Started/>
+		element: <Started />
 	}, {
 		path: "/dashboard",
-		element: <Dashboard/>
+		element: <Dashboard />
 	}, {
 		path: "/register",
-		element: <Register/>
+		element: <Register />
 	}, {
 		path: "/breakdown",
-		element: <BreakDown/>
+		element: <BreakDown />
 	}, {
 		path: "/scopeDetails",
-		element: <ScopeDetails/>
+		element: <ScopeDetails />
 	}
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<TransactionsProvider>
-		<RouterProvider router={router}/>
+		<RouterProvider router={router} />
 	</TransactionsProvider>
 )
 

@@ -1,9 +1,9 @@
+import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import background from '../assets/background.jpg';
 import Navbar from "../components/Navbar.jsx";
 import { TransactionContext } from "../context/TransactionContext.jsx";
-import axios from "axios";
 
 const Input = ({ placeholder, name, type, value, handleChange }) => (
 	<input
@@ -23,7 +23,7 @@ const Started = () => {
 		setEmission(e.target.value);
 	}
 
-	const { currentAccount } = useContext(TransactionContext);
+	const { currentAccount, registerEmission } = useContext(TransactionContext);
 	const [companyDetails, setCompanyDetails] = useState({
 		name: "",
 		walletAddress: currentAccount,
@@ -36,6 +36,7 @@ const Started = () => {
 		const getCompanyDetails = async () => {
 			if (!currentAccount) return;
 			try {
+
 				const response = await axios.get(`http://10.0.4.104:8000/apis/companies/details/${currentAccount}/`);
 				const { company, industry_sector } = response.data;
 				setCompanyDetails({
@@ -56,10 +57,12 @@ const Started = () => {
 	const postEmission = async (e) => {
 		e.preventDefault();
 		try {
+			const txHash = await registerEmission(parseInt(emission))
+			console.log("The transaction hash is " + txHash);
 			const response = await axios.post('http://10.0.4.104:8000/apis/footprint-reports/', {
 				company: companyDetails.id,
 				total_emission: parseFloat(emission),
-				transaction_hash: "0x1234567890"
+				transaction_hash: txHash
 			});
 			console.log('Emission posted successfully:', response.data);
 			// Passing response data to the /scopeDetails route
@@ -71,9 +74,9 @@ const Started = () => {
 
 	return (
 		<div className="bg-[#2e3918] w-screen h-screen">
-			<Navbar/>
+			<Navbar />
 			<div className="bg-hero-image">
-				<img alt="hero" src={background} className="w-6/12 h-screen absolute top-0 z-0"/>
+				<img alt="hero" src={background} className="w-6/12 h-screen absolute top-0 z-0" />
 			</div>
 			<div className="absolute w-1/2 mt-10 right-0">
 				<div className="p-5 w-[30rem] flex flex-col justify-center items-center blue-glassmorphism">
@@ -81,7 +84,7 @@ const Started = () => {
 						<h1 className="text-8xl font-semibold text-secondary mt-10 mb-2 font-albert">{companyDetails.name}</h1>
 						<h2 className="text-xl text-secondary mb-10 font-albert">{companyDetails.industry}</h2>
 						<label className="text-secondary my-10">Total CO2e emissions</label>
-						<Input placeholder="Total Emission (CO2e)" name="emission" type="number" handleChange={handleChange}/>
+						<Input placeholder="Total Emission (CO2e)" name="emission" type="number" handleChange={handleChange} />
 						<button type="submit" className="bg-secondary px-8 w-full py-2 rounded-lg">Submit</button>
 					</form>
 				</div>

@@ -8,7 +8,7 @@ export const TransactionContext = React.createContext();
 const { ethereum } = window;
 
 const createEthereumContract = () => {
-  const provider = new ethers.BrowserProvider(ethereum)
+  const provider = new ethers.providers.Web3Provider(ethereum)
   console.log({ "ether": ethereum })
   const signer = provider.getSigner();
   console.log("Signer" + signer)
@@ -27,44 +27,34 @@ export const TransactionsProvider = ({ children }) => {
     setformData((prevState) => ({ ...prevState, [name]: e.target.value }));
   };
 
-  const getCompanyData = async (companyAddress) => {
-    try {
-      const carbonFootprintContract = createEthereumContract();
-      const tx = await carbonFootprintContract.registerCompany(parsedEmission);
-      console.log("Registering footprint...", tx.hash);
-
-      // Wait for transaction confirmation (optional)
-      const receipt = await tx.wait();
-      console.log("Transaction confirmed:", receipt.transactionHash);
-
-      // Update UI or perform actions after confirmation (optional)
-    } catch (error) {
-      console.error("Error registering company:", error);
-    }
-  };
-
-
   const registerEmission = async (totalEmission) => {
     try {
       if (ethereum) {
         const carbonFootprintContract = createEthereumContract();
-
-        // Get the connected wallet address
-        const connectedAddress = currentAccount;
-
-        // No parsing to BigNumber needed (function expects address)
-
-        const tx = await carbonFootprintContract.registerCompany(connectedAddress);
-        console.log("Registering company...", tx.hash);
-
-        // Wait for transaction confirmation (optional)
+        const tx = await carbonFootprintContract.submitFootprint(totalEmission);
+        console.log("Registering footprint...", tx.hash);
         const receipt = await tx.wait();
         console.log("Transaction confirmed:", receipt.transactionHash);
 
-        // Update UI or perform actions after confirmation (optional)
+
+        // Return the transaction hash
+        return receipt.transactionHash;
       }
     } catch (error) {
       console.error("Error registering company:", error);
+      throw error
+    }
+  };
+
+  const getCompanyFootprints = async () => {
+    try {
+      if (ethereum && currentAccount) {
+        const carbonFootprintContract = createEthereumContract();
+        const companyFootprints = await carbonFootprintContract.getFootprints();
+        setFootprints(companyFootprints);
+      }
+    } catch (error) {
+      console.error("Error getting company footprints:", error);
     }
   };
 
@@ -113,7 +103,7 @@ export const TransactionsProvider = ({ children }) => {
         connectWallet,
         currentAccount,
         registerEmission,
-        getCompanyData,
+        getCompanyFootprints,
         handleChange,
         formData,
       }}
