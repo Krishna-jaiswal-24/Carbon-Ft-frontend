@@ -8,7 +8,11 @@ export const TransactionContext = React.createContext();
 const { ethereum } = window;
 
 const createEthereumContract = () => {
-  const provider = new ethers.providers.Web3Provider(ethereum)
+  if (!ethereum) {
+    throw new Error("Please install MetaMask!");
+  }
+  const provider = new ethers.providers.Web3Provider(window.ethereum)
+
   console.log({ "ether": ethereum })
   const signer = provider.getSigner();
   console.log("Signer" + signer)
@@ -61,8 +65,9 @@ export const TransactionsProvider = ({ children }) => {
 
   const checkIfWalletIsConnect = async () => {
     try {
-      if (!ethereum) return alert("Please install MetaMask.");
-
+      if (!ethereum) {
+        throw new Error("Please install MetaMask!");
+      }
       const accounts = await ethereum.request({ method: "eth_accounts" });
 
       if (accounts.length) {

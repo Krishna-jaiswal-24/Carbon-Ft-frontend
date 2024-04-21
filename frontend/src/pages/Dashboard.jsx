@@ -46,7 +46,7 @@ const Dashboard = () => {
 					<div className='flex flex-col'>
 						<CompanyDetailsCard />
 						<div>
-							<Link to={'/add-footprint'}><button className='bg-secondary w-full p-4 rounded-lg my-8 text-2xl font-albert text-tertiary font-bold cursor-pointer hover:'>Add new Footprint</button></Link>
+							<Link to={'/add-footprint'}><button className='bg-secondary w-full p-4 rounded-lg my-8 text-2xl font-albert text-tertiary font-bold cursor-pointer hover:' >Add new Footprint</button></Link>
 						</div>
 					</div>
 
@@ -59,6 +59,7 @@ const Dashboard = () => {
 							footprints.map((footprint) => (
 								<FootprintCard
 									key={footprint.id}
+									id={footprint.id}
 									timestamp={footprint.timestamp}
 									txHash={footprint.transaction_hash}
 									totalEmission={footprint.total_emission}

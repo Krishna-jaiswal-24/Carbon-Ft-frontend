@@ -4,11 +4,9 @@ import { useNavigate } from "react-router-dom";
 
 const FootprintCard = (props) => {
 
-
-	console.log(props)
 	const navigate = useNavigate();
 	const handleClick = () => {
-		navigate('/breakdown');
+		navigate('/breakdown',{state:props});
 	}
 	return (
 		<div className="bg-primary w-fit flex flex-col items-start p-4 justify-center h-40 rounded-lg my-8 mx-4 cursor-pointer" >
