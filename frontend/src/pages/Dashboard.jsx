@@ -21,7 +21,7 @@ const Dashboard = () => {
 		<div className="bg-[#2e3918] w-full h-full">
 			<Navbar />
 			<main className="flex flex-col justify-between h-full p-10">
-				<div className="flex justify-between items-start mb-10">
+				<div className="flex justify-between items-start mb-10 ">
 					<CompanyDetailsCard />
 					<ChartCard />
 				</div>
