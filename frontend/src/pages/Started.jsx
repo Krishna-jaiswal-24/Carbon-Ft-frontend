@@ -62,7 +62,8 @@ const Started = () => {
 				transaction_hash: "0x1234567890"
 			});
 			console.log('Emission posted successfully:', response.data);
-			navigate('/breakdown');
+			// Passing response data to the /scopeDetails route
+			navigate('/scopeDetails', { state: { emissionData: response.data } });
 		} catch (error) {
 			console.error('Failed to post emission:', error);
 		}
@@ -75,10 +76,11 @@ const Started = () => {
 				<img alt="hero" src={background} className="w-6/12 h-screen absolute top-0 z-0"/>
 			</div>
 			<div className="absolute w-1/2 mt-10 right-0">
-				<div className="p-5 w-[30rem] flex flex-col justify-start items-center blue-glassmorphism">
+				<div className="p-5 w-[30rem] flex flex-col justify-center items-center blue-glassmorphism">
 					<form onSubmit={postEmission}>
-						<h1 className="text-8xl font-semibold text-secondary font-albert mt-16 mb-6">{companyDetails.name}</h1>
-						<h2 className="text-xl text-secondary font-albert">{companyDetails.industry}</h2>
+						<h1 className="text-8xl font-semibold text-secondary mt-10 mb-2 font-albert">{companyDetails.name}</h1>
+						<h2 className="text-xl text-secondary mb-10 font-albert">{companyDetails.industry}</h2>
+						<label className="text-secondary my-10">Total CO2e emissions</label>
 						<Input placeholder="Total Emission (CO2e)" name="emission" type="number" handleChange={handleChange}/>
 						<button type="submit" className="bg-secondary px-8 w-full py-2 rounded-lg">Submit</button>
 					</form>

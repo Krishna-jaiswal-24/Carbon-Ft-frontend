@@ -7,10 +7,8 @@ export const TransactionContext = React.createContext();
 
 const { ethereum } = window;
 
-const provider = new ethers.JsonRpcApiProvider(`https://eth-sepolia.g.alchemy.com/v2/C_x2f95uRPElXsgh6urjuRD1MVoCPrgU`)
-console.log(provider)
 const createEthereumContract = () => {
-
+  const provider = new ethers.BrowserProvider(ethereum)
   console.log({ "ether": ethereum })
   const signer = provider.getSigner();
   console.log("Signer" + signer)
@@ -22,7 +20,7 @@ const createEthereumContract = () => {
 
 export const TransactionsProvider = ({ children }) => {
   const [formData, setformData] = useState({ totalEmission: "" });
-  const [currentAccount, setCurrentAccount] = useState();
+  const [currentAccount, setCurrentAccount] = useState("");
 
 
   const handleChange = (e, name) => {
@@ -83,7 +81,6 @@ export const TransactionsProvider = ({ children }) => {
 
         // getCompanyData(currentAccount);
       } else {
-        setCurrentAccount(null)
         console.log("No accounts found");
       }
     } catch (error) {

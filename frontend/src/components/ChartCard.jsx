@@ -1,5 +1,3 @@
-import React from 'react';
-import {Line} from 'react-chartjs-2';
 import {
 	CategoryScale,
 	Chart as ChartJS,
@@ -10,16 +8,18 @@ import {
 	Title,
 	Tooltip
 } from 'chart.js';
+import React from 'react';
+import { Line } from 'react-chartjs-2';
 
 
 
 
 ChartJS.register(LineElement, PointElement, CategoryScale, Legend, LinearScale, Title, Tooltip);
 const ChartCard = () => {
-	const options={}
+	const options = {}
 
-	const data={
-		labels: ['1', '2', '3', '4', '5', '6', '7','1', '2', '3', '4', '5', '6', '7'],
+	const data = {
+		labels: ['1', '2', '3', '4', '5', '6', '7', '1', '2', '3', '4', '5', '6', '7'],
 		datasets: [
 			{
 				label: 'CO2e',
@@ -41,7 +41,7 @@ const ChartCard = () => {
 	return (
 		<div className="h-auto w-3/5 p-8 rounded-lg bg-primary">
 			<h1 className="text-secondary font-albert text-5xl">Graph</h1>
-			<div className="h-[90%]"> <Line  options={options} data={data}/></div>
+			<div className="h-[90%]"> <Line options={options} data={data} /></div>
 
 		</div>
 	);

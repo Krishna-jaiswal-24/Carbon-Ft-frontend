@@ -9,6 +9,7 @@ import Dashboard from "./pages/Dashboard.jsx";
 import {TransactionsProvider} from './context/TransactionContext.jsx';
 import Register from "./pages/Register.jsx";
 import BreakDown from "./pages/BreakDown.jsx";
+import ScopeDetails from "./pages/ScopeDetails.jsx";
 
 const router = createBrowserRouter([
 	{
@@ -24,9 +25,12 @@ const router = createBrowserRouter([
 	}, {
 		path: "/register",
 		element: <Register/>
-	},{
-	path: "/breakdown",
-	element: <BreakDown/>
+	}, {
+		path: "/breakdown",
+		element: <BreakDown/>
+	}, {
+		path: "/scopeDetails",
+		element: <ScopeDetails/>
 	}
 ]);
 
