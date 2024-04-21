@@ -29,6 +29,8 @@ const Dashboard = () => {
 
 	}, [currentAccount]);
 
+
+
 	const navigate = useNavigate();
 
 	// Redirect if not logged in
@@ -37,6 +39,15 @@ const Dashboard = () => {
 			navigate('/');
 		}
 	}, [currentAccount, navigate]);
+
+	const timestampToEmissionMap = new Map();
+
+	for (const item of footprints) {
+		const timestamp = item.timestamp;
+		const totalEmission = item.total_emission;
+		timestampToEmissionMap.set(timestamp, totalEmission);
+	}
+	console.log(timestampToEmissionMap);
 
 	return (
 		<div className="bg-[#2e3918] w-full h-[200vh]">
@@ -50,7 +61,7 @@ const Dashboard = () => {
 						</div>
 					</div>
 
-					<ChartCard />
+					<ChartCard data={timestampToEmissionMap}/>
 				</div>
 				<section>
 					<h1 className="text-6xl text-secondary font-albert mb-10">Footprint History</h1>
