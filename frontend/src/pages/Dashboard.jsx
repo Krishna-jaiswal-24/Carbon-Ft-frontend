@@ -54,7 +54,7 @@ const Dashboard = () => {
 				</div>
 				<section>
 					<h1 className="text-6xl text-secondary font-albert mb-10">Footprint History</h1>
-					<div className="flex justify-between flex-wrap">
+					<div className="flex justify-start gap-x-12 flex-wrap">
 						{
 							footprints.map((footprint) => (
 								<FootprintCard
