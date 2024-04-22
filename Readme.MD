@@ -4,5 +4,37 @@
 - Ekansh Thakur [LinkedIn](https://www.linkedin.com/in/ekanshthakur/)
 
 
+## Technolgy Used
+- ReactJs
+- Solidity
+- Django
+
 ## Project Description
-A secret society is a club or an organization whose activities, events, inner functioning, or membership are concealed from non-members. The society may or may not attempt to conceal its existence. The term usually excludes covert groups, such as intelligence agencies or guerrilla insurgencies, that hide their activities and memberships but maintain a public presence. The exact qualifications for labeling a group as a secret society are disputed, but definitions generally rely on the degree to which the organization insists on secrecy and might involve the retention and transmission of secret knowledge, denial of membership in or knowledge of the group, the creation of personal bonds between members of the organization, and the use of secret rites or rituals which solidify members of the group.
+
+Re-Store is a Carbon footprint tracker that keeps a track of Carbon Emissions of the company. It is a decentralized 
+application that uses blockchain technology to store the data of the company. The data is stored in the form of smart contracts on the Ethereum blockchain. The data is immutable and secure.
+
+## Features
+- Register Company Via metamask wallet
+- Add Carbon Emission Data
+- See the Carbon Emission Data on the dashboard and the graph
+- The data is stored on the Ethereum blockchain
+- The data is immutable and secure
+- The data can be accessed by any one and can be seen on Etherscan.
+
+
+## Project Demonstration Link
+
+[Project Demonstration](https://drive.google.com/file/d/1dswvM81ktf-rBASttwjE-BPM2bdbcfe5/view?usp=sharing)
+
+There is a wait time of 20 seconds for the transaction to be mined on the Ethereum testnet blockchain. The transaction 
+hash 
+is displayed on the screen. The user can click on the transaction hash to see the transaction on Etherscan.
+
+## Photos of the Project
+
+![image](/Users/denji/Desktop/ScreenShots/Screenshot 2024-04-22 at 9.53.22 PM.png)
+![image](/Users/denji/Desktop/ScreenShots/Screenshot 2024-04-22 at 9.53.42 PM.png)
+![image](/Users/denji/Desktop/ScreenShots/Screenshot 2024-04-22 at 10.16.59 PM.png)
+![image](/Users/denji/Desktop/ScreenShots/Screenshot 2024-04-22 at 10.21.11 PM.png)
+![image](/Users/denji/Desktop/ScreenShots/Screenshot 2024-04-22 at 10.22.00 PM.png)
