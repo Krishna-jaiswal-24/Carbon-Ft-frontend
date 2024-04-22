@@ -1,59 +1,36 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.0;
+pragma solidity >0.7.0 <0.9.0;
 
 contract CarbonFootprintRegistry {
     // Struct to store company data
-    struct Company {
-        address payable walletAddress;
-        uint256 totalEmission;
+    struct FootprintRecord {
+        uint256 footprint;
         uint256 timestamp;
     }
 
     // Mapping to store company data by their address
-    mapping(address => Company) public companies;
-
-    // Event to be emitted when a company registers
-    event CompanyRegistered(
-        address indexed companyAddress,
-        uint256 totalEmission,
-        uint256 timestamp
-    );
+    mapping(address => FootprintRecord[]) public companyFootprints;
 
     // Function to register a company's carbon footprint
-    function registerCompany(uint256 _totalEmission) public {
+    function submitFootprint(uint256 _footprint) public {
         // Require that the message sender provides a valid emission value
-        require(_totalEmission > 0, "Total emission must be greater than zero");
+        require(_footprint > 0, "Total emission must be greater than zero");
 
-        // Get current timestamp
         uint256 timestamp = block.timestamp;
 
-        // Cast msg.sender to address payable (not strictly necessary here)
-        address payable sender = payable(msg.sender);
-
-        // Store company data
-        companies[sender] = Company(sender, _totalEmission, timestamp);
-
-        // Emit the CompanyRegistered event
-        emit CompanyRegistered(sender, _totalEmission, timestamp);
+        if (companyFootprints[msg.sender].length == 0) {
+            companyFootprints[msg.sender].push(
+                FootprintRecord(_footprint, timestamp)
+            );
+        } else {
+            companyFootprints[msg.sender].push(
+                FootprintRecord(_footprint, timestamp)
+            );
+        }
     }
 
-    // Function to retrieve a company's registered data
-    function getCompanyData(
-        address _companyAddress
-    )
-        public
-        view
-        returns (
-            address payable walletAddress,
-            uint256 totalEmission,
-            uint256 timestamp
-        )
-    {
-        Company memory company = companies[_companyAddress];
-        return (
-            company.walletAddress,
-            company.totalEmission,
-            company.timestamp
-        );
+    // Function to retrieve a company's ALL footprint records (assuming it's the calling address)
+    function getFootprints() public view returns (FootprintRecord[] memory) {
+        return companyFootprints[msg.sender];
     }
 }
