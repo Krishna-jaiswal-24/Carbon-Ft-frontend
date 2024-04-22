@@ -15,7 +15,6 @@ import {Line} from 'react-chartjs-2';
 ChartJS.register(LineElement, PointElement, CategoryScale, Legend, LinearScale, Title, Tooltip);
 const ChartCard = (props) => {
 
-	console.log(props.data)
 		const options = {
 			scales: {
 				x: {
@@ -61,8 +60,6 @@ const ChartCard = (props) => {
 
 const keys = [...props.data.keys()];
 const values = [...props.data.values()];
-console.log(keys);
-console.log(values);
 
 const data = {
 	labels: keys,

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from 'react';
 import { TransactionContext } from "../context/TransactionContext.jsx";
 
-const CompanyDetailsCard = () => {
+const CompanyDetailsCard = (props) => {
 	const [companyDetails, setCompanyDetails] = useState({
 		name: "",
 		walletAddress: "",
@@ -10,11 +10,32 @@ const CompanyDetailsCard = () => {
 		website: ""
 	});
 
-	const { currentAccount } = useContext(TransactionContext);
+	let currentAccount;
+	// let { currentAccount } = useContext(TransactionContext);
+
+	if(props.walletAddress!==undefined){
+		currentAccount=props.walletAddress.toLowerCase();
+	}else{
+		currentAccount = useContext(TransactionContext).currentAccount;
+
+	}
+
 
 	useEffect(() => {
 		const fetchCompany = async () => {
 			try {
+				if(props.walletAddress!==undefined){
+					console.log('props',props.walletAddress);
+					const { data } = await axios.get(`http://10.0.4.104:8000/apis/companies/details/${props.walletAddress}`);
+					console.log(data);  // It's good to log data for debugging, can be removed in production
+					const { company, industry_sector } = data;
+					setCompanyDetails({
+						name: company.name,
+						walletAddress: company.wallet_address,
+						industry: industry_sector.name,
+						website: company.website
+					});
+				}
 				const { data } = await axios.get(`http://10.0.4.104:8000/apis/companies/details/${currentAccount}`);
 				console.log(data);  // It's good to log data for debugging, can be removed in production
 				const { company, industry_sector } = data;

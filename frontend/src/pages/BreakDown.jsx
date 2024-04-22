@@ -31,7 +31,7 @@ const BreakDown = () => {
 				{scope ? (
 					<>
 						<BreakDownCard
-							value={parseInt(scope[0].scope1_emission / props.totalEmission * 100)}
+							value={parseFloat(scope[0].scope1_emission / props.totalEmission * 100).toFixed(1)}
 							description={
 								"Scope 1 emissions are “direct emissions” from sources that are owned or controlled by the company. This can include emissions from:"}
 						/>
