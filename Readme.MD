@@ -32,9 +32,4 @@ hash
 is displayed on the screen. The user can click on the transaction hash to see the transaction on Etherscan.
 
 ## Photos of the Project
-
-![image](./Images/Screenshot 2024-04-22 at 9.53.22 PM.png)
-![image](./Images/Screenshot 2024-04-22 at 9.53.42 PM.png)
-![image](./Images/Screenshot 2024-04-22 at 10.16.59 PM.png)
-![image](./Images/Screenshot 2024-04-22 at 10.21.11 PM.png)
-![image](./Images/Screenshot 2024-04-22 at 10.22.00 PM.png)
+![Screenshot 2024-04-22 at 9.53.22 PM.png](Images%2FScreenshot%202024-04-22%20at%209.53.22%E2%80%AFPM.png)![Screenshot 2024-04-22 at 9.53.42 PM.png](Images%2FScreenshot%202024-04-22%20at%209.53.42%E2%80%AFPM.png)![Screenshot 2024-04-22 at 10.16.59 PM.png](Images%2FScreenshot%202024-04-22%20at%2010.16.59%E2%80%AFPM.png)![Screenshot 2024-04-22 at 10.21.11 PM.png](Images%2FScreenshot%202024-04-22%20at%2010.21.11%E2%80%AFPM.png)![Screenshot 2024-04-22 at 10.22.00 PM.png](Images%2FScreenshot%202024-04-22%20at%2010.22.00%E2%80%AFPM.png)
